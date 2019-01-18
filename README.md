@@ -13,7 +13,7 @@ Amazon Customer Reviews Dataset (S3)
 130+ million customer reviews
 
 ## Engineering Challenge:
-Setup MySQL in replication mode, leverage its ClusterControl and Load balancer to achieve highly availability. Use MySQL as external database for Airflow.
+Setup MySQL in replication mode, leverage ClusterControl and Load balancer to achieve highly availability. Use MySQL as external database for Airflow.
 
 ## Business Value:
 With this highly-available batch processing architecture, we can process large volume jobs without downtime.
