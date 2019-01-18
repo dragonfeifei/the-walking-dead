@@ -21,7 +21,6 @@ Business Value:
 MVP:
 	1. have a DAG for pulling data from s3 and use spark operator to caculate average rating for a specific product
 	2. configure Airflow to connect to highly available MySQL
-	3. bring down the master of MySQL and make sure batch processing is not affected
-  
+	
 Stretch Goals:
   make scheduler highly available as well
