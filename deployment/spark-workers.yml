@@ -1,0 +1,10 @@
+purchase_type: on_demand
+subnet_id: subnet-041797b6adcd391e2
+num_instances: 3
+key_name: Feifei-Song-IAM-keypair
+security_group_ids: sg-0819d6b63012aa9bb
+instance_type: m4.large
+tag_name: spark
+vol_size: 200
+role: worker
+use_eips: true
