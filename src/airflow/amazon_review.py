@@ -5,29 +5,29 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 
 
-def print_world():
-    print('world')
+def print_message():
+    print('Job finished!')
 
 
 default_args = {
     'owner': 'me',
-    'start_date': dt.datetime(2019, 01, 21),
-    'retries': 1,
-    'retry_delay': dt.timedelta(minutes=5),
+    'start_date': dt.datetime(2019, 01, 01),
+    'retries': 2,
+    'retry_delay': dt.timedelta(minutes=1),
 }
 
 
 with DAG('amazon_review',
          default_args=default_args,
-         schedule_interval='*/10 * * * *',
+         schedule_interval=None,
          ) as dag:
 
-    print_hello = BashOperator(task_id='calc_review',
-                               bash_command='spark-submit ~/workspace/the-walking-dead/src/spark/calculate.py -d 20190101 -c Luggage')
+    calc_review = BashOperator(task_id='calc_review',
+                               bash_command='spark-submit ~/workspace/the-walking-dead/src/spark/calculate.py -d {{ execution_date.strftime("%Y%m%d") }} -c Luggage')
     sleep = BashOperator(task_id='sleep',
-                         bash_command='sleep 1')
-    print_world = PythonOperator(task_id='print_world',
-                                 python_callable=print_world)
+                         bash_command='sleep 20')
+    print_done = PythonOperator(task_id='print_done',
+                                 python_callable=print_message)
 
 
-print_hello >> sleep >> print_world
+calc_review >> sleep >> print_done

@@ -19,12 +19,7 @@ args = parser.parse_args()
 
 date = datetime.strptime(args.date, '%Y%m%d')
 
-conf = SparkConf()
-
-conf = conf.setAppName("get_amazon_reviews")
-
-conf = conf.setMaster("spark://ip-10-0-0-11.us-west-2.compute.internal:7077")
-
+conf = SparkConf().setAppName("get_amazon_reviews").setMaster("spark://ip-10-0-0-11.us-west-2.compute.internal:7077")
 
 sc = SparkContext(conf = conf)
 sql = SQLContext(sc)
@@ -36,6 +31,14 @@ else:
 
 df = sql.read.parquet(s3_path)
 
-df = df.filter(df.review_date <= date).groupBy('product_id').agg(F.avg('star_rating').alias("rating"))
+df = df.filter(df.review_date <= date).groupBy('product_id').agg(F.avg('star_rating').alias("rating")).withColumn("by_date", F.lit(date))
 
 df.show(20)
+
+
+df.write.format('jdbc').options(
+      url='jdbc:mysql://10.0.0.11/resultdb',
+      driver='com.mysql.jdbc.Driver',
+      dbtable='ratings',
+      user='user',
+      password='user').mode('append').save()
