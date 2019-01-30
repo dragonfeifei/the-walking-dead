@@ -1,0 +1,25 @@
+vrrp_script check_haproxy {
+    script "pidof haproxy"
+    interval 5
+    fall 2
+    rise 2
+}
+
+vrrp_instance VI_1 {
+    debug 2
+    interface eth0
+    state BACKUP
+    virtual_router_id 1
+    priority 100
+    unicast_src_ip 10.0.0.10
+
+    unicast_peer {
+        10.0.0.9
+    }
+
+    track_script {
+        check_haproxy
+    }
+
+    notify_master /etc/keepalived/failover.sh root
+}
