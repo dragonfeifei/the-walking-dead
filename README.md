@@ -86,7 +86,7 @@ My work will further be discussed in following sections:
 
 - Highly Available Metastore
 
-  - [Setup Highly Available MySQL](##setup-highly-available-mysql)
+  - [Setup Highly Available MySQL](#setup-highly-available-mysql)
 
   - [Setup Highly Available Load Balancer](##Setup-Highly-Available-Load-Balancer)
 
