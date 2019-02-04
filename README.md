@@ -384,7 +384,7 @@ By now, we should have successfully configured a highly available MySQL replicat
 
 
 
-##Setup Highly Available Load Balancer
+## Setup Highly Available Load Balancer
 
 ### 1. Introduction
 
