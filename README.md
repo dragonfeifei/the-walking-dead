@@ -88,21 +88,21 @@ My work will further be discussed in following sections:
 
   - [Setup Highly Available MySQL](#setup-highly-available-mysql)
 
-  - [Setup Highly Available Load Balancer](##Setup-Highly-Available-Load-Balancer)
+  - [Setup Highly Available Load Balancer](#setup-highly-available-load-balancer)
 
 
 
 - Highly Available Worker
 
-  - [Use Celery Executor Mode](##Use-Celery-Executor-Mode)
+  - [Use Celery Executor Mode](#use-celery-executor-mode)
 
 
 
 - Highly Available Scheduler
 
-  - [Setup Zookeeper](##Setup-Zookeeper)
+  - [Setup Zookeeper](#setup-zookeeper)
 
-  - [Scheduler Controller](##Scheduler-Controller)
+  - [Scheduler Controller](#scheduler-controller)
 
 
 
@@ -668,3 +668,6 @@ $ sudo service haproxy stop
 
 and check the AWS console to see the elastic IP got transferred.
 
+## Use Celery Executor Mode
+## Setup Zookeeper
+## Scheduler Controller
