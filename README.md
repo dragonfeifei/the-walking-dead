@@ -1,12 +1,12 @@
-#The Walking Dead
+# The Walking Dead
 
-##Overview
+## Overview
 
 The Walking Dead is an enhancement project for [Apache Airflow](https://airflow.apache.org). The goal is to make Airflow architecture highly available and be able to handle batch processings with minimal downtime. In that case, if any component becomes "dead", it's still "walking".
 
 
 
-##An Airflow Application
+## An Airflow Application
 
 ### Amazon Product Ratings
 
@@ -16,7 +16,7 @@ Before we dig into the project, I want to take one step back. Let's think about 
 
 I assume many of us have experiences of online shopping with Amazon.com. Then you must be familiar with this rating section for each product in their website.
 
-![alt text](rating of one book.png)
+![alt text](image/rating%20of%20one%20book.png?raw=true)
 
 
 
@@ -86,31 +86,31 @@ My work will further be discussed in following sections:
 
 - Highly Available Metastore
 
-  - [Setup Highly Available MySQL](##Setup Highly Available MySQL)
+  - [Setup Highly Available MySQL](##Setup-Highly-Available-MySQL)
 
-  - [Setup Highly Available Load Balancer](##Setup Highly Available Load Balancer)
+  - [Setup Highly Available Load Balancer](##Setup-Highly-Available-Load-Balancer)
 
 
 
 - Highly Available Worker
 
-  - [Use Celery Executor Mode](##Use Celery Executor Mode)
+  - [Use Celery Executor Mode](##Use-Celery-Executor-Mode)
 
 
 
 - Highly Available Scheduler
 
-  - [Setup Zookeeper](##Setup Zookeeper)
+  - [Setup Zookeeper](##Setup-Zookeeper)
 
-  - [Scheduler Controller](##Scheduler Controller)
-
-
+  - [Scheduler Controller](##Scheduler-Controller)
 
 
 
 
 
-##Setup Highly Available MySQL
+
+
+## Setup Highly Available MySQL
 
 ### 1. Introduction
 
@@ -406,7 +406,7 @@ However, we are introducing a single point failure here. What if the load balanc
 
 
 
-![alt text](Load Balancer.png)
+![alt text](image/Load%20Balancer.png?raw=true)
 
 
 
@@ -544,7 +544,7 @@ You can see we also start a webserver displaying stats on port 9999.
 
 
 
-![alt text](HAProxy Stats.png)
+![alt text](image/HAProxy%20Stats.png?raw=true)
 
 
 
