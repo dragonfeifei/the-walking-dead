@@ -31,7 +31,7 @@ signal.signal(signal.SIGTERM, on_exit)
 zk = KazooClient(hosts='10.0.0.6:2181,10.0.0.11:2181,10.0.0.4:2181,10.0.0.7:2181')
 zk.start()
 
-election = zk.Election("/master-scheduler", socket.gethostname())
+election = zk.Election("/master-scheduler", name)
 
 print(name + " is ready to become master")
 

@@ -29,9 +29,7 @@ Think about how many products in Amazon.com, how many new reviews will be submit
 A straightforward design of such data pipeline would be:
 
 
-
-[TODO] - picture of data pipeline
-
+![alt text](image/data%20pipeline.png?raw=true)
 
 
 We have multiple pre-defined DAGs, each dag is responsible for calculating average ratings of a certain product category (e.g. Books). Everyday, Airflow scheduler would pick the DAG and run it with current date.
@@ -54,8 +52,7 @@ After the spark processing, you may have an additional tasks for sending notific
 
 As you can see, Airflow plays an important role in this pipeline. Unfortunately, its default setup is fragile.
 
-
-[TODO] - default setup
+![alt text](image/default%20setup.png?raw=true)
 
 - Scheduler
 
@@ -93,6 +90,10 @@ My work will further be discussed in following sections:
 
   - [Setup Highly Available Load Balancer](#setup-highly-available-load-balancer)
 
+
+Final enhanced architecture will look like:
+
+![alt text](image/final%20architecture.png?raw=true)
 
 
 ## Implement Scheduler Controller
@@ -656,7 +657,7 @@ We use cmd line `pidof haproxy` to check whether the local load balancer is runn
 
 
 
-`priority 100` is the default priority for this instance. Whenever a check fails, we will decrease this score by 2 based on `faill 2`. Among all the Keepalived peers, whichever has the highest priority will become master.
+`priority 110` is the default priority for this instance. Whenever a check fails, we will decrease this score by 2 based on `faill 2`. Among all the Keepalived peers, whichever has the highest priority will become master.
 
 
 
