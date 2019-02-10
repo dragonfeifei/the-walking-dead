@@ -24,10 +24,10 @@ with DAG('amazon_review',
 
     calc_review = BashOperator(task_id='calc_review',
                                bash_command='spark-submit ~/workspace/the-walking-dead/src/spark/calculate.py -d {{ execution_date.strftime("%Y%m%d") }} -c Luggage')
-    sleep = BashOperator(task_id='sleep',
-                         bash_command='sleep 20')
-    print_done = PythonOperator(task_id='print_done',
-                                 python_callable=print_message)
+    notify = BashOperator(task_id='notify',
+                          bash_command='sleep 20')
+    trigger = PythonOperator(task_id='trigger',
+                             python_callable=print_message)
 
 
-calc_review >> sleep >> print_done
+calc_review >> notify >> trigger
