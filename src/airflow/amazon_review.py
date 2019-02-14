@@ -1,13 +1,11 @@
 import datetime as dt
-
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 
-
-def print_message():
-    print('Job finished!')
-
+# Dummy function for triggering downstream processing
+def trigger_downstream():
+    print('triggered!')
 
 default_args = {
     'owner': 'me',
@@ -17,18 +15,35 @@ default_args = {
     'depends_on_past': False,
 }
 
+with DAG(
+    'amazon_review',
+    default_args=default_args,
+    schedule_interval='@daily'
+) as dag:
 
-with DAG('amazon_review',
-         default_args=default_args,
-         schedule_interval='@daily',
-         ) as dag:
+    # Submit spark job using commandline
+    # Alternative: use SparkSubmitOperator
+    calc_review = BashOperator(
+        task_id='calc_review',
+        bash_command=(
+            'spark-submit '
+            '~/workspace/the-walking-dead/src/spark/calculate.py '
+            '-d {{ execution_date.strftime("%Y%m%d") }} -c Luggage'
+        )
+    )
 
-    calc_review = BashOperator(task_id='calc_review',
-                               bash_command='spark-submit ~/workspace/the-walking-dead/src/spark/calculate.py -d {{ execution_date.strftime("%Y%m%d") }} -c Luggage')
-    notify = BashOperator(task_id='notify',
-                          bash_command='sleep 20')
-    trigger = PythonOperator(task_id='trigger',
-                             python_callable=print_message)
+    # Send notifications
+    # Dummy: Just sleep now, ideally we should call certain apis
+    notify = BashOperator(
+        task_id='notify',
+        bash_command='sleep 20'
+    )
 
+    # Trigger downstreams
+    trigger = PythonOperator(
+        task_id='trigger',
+        python_callable=trigger_downstream
+    )
 
+# Dependency
 calc_review >> notify >> trigger
