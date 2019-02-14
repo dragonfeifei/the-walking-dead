@@ -18,7 +18,7 @@ def main():
         if scheduler:
             scheduler.terminate()
         output = scheduler.wait()
-            print("Scheduler was killed with output: " + str(output))
+        print("Scheduler was killed with output: " + str(output))
         sys.exit(0)
 
     # Start scheduler as subprocess and wait for it
