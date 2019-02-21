@@ -31,9 +31,11 @@ sc = SparkContext(conf = conf)
 sql = SQLContext(sc)
 
 if args.category:
+    # Here we leverage Parquet filter pushdown to load specific category
     s3_path = "s3a://amazon-reviews-pds/parquet/product_category=" 
               + args.category
 else:
+    # Otherwise, we load everything
     s3_path = "s3a://amazon-reviews-pds/parquet/"
 
 # Pull review data from s3
